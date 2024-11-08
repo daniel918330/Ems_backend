@@ -41,18 +41,30 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDto updateEmployee(Long employeeId,EmployeeDto updatedEmployee) {
+    public EmployeeDto updateEmployee(Long employeeId, EmployeeDto updatedEmployee) {
+        // 查找要更新的员工
         Employee employee = employeeRepository.findById(employeeId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("not fund : " + employeeId));
-        employee.setFirstName(updatedEmployee.getFirstName());
-        employee.setLastName(updatedEmployee.getLastName());
-        employee.setEmail(updatedEmployee.getEmail());
-        employee.setCardId(updatedEmployee.getCardId());
+                .orElseThrow(() -> new ResourceNotFoundException("Not found: " + employeeId));
 
+        // 更新每个字段，只在新的值不为 null 时进行更新
+        if (updatedEmployee.getFirstName() != null) {
+            employee.setFirstName(updatedEmployee.getFirstName());
+        }
+        if (updatedEmployee.getLastName() != null) {
+            employee.setLastName(updatedEmployee.getLastName());
+        }
+        if (updatedEmployee.getEmail() != null) {
+            employee.setEmail(updatedEmployee.getEmail());
+        }
+        if (updatedEmployee.getCardId() != null) {
+            employee.setCardId(updatedEmployee.getCardId());
+        }
+
+        // 保存更新后的员工对象
         Employee updatedEmployeeObj = employeeRepository.save(employee);
         return EmployeeMapper.mapToEmployeeDto(updatedEmployeeObj);
     }
+
 
     @Override
     public void deleteEmployee(Long employeeId) {
