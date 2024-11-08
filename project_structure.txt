@@ -1,0 +1,27 @@
+.
+├── java
+│   └── com
+│       └── example
+│           └── Ems
+│               ├── EmsBackendApplication.java
+│               ├── controller
+│               │   └── EmployeeController.java
+│               ├── dto
+│               │   └── EmployeeDto.java
+│               ├── entity
+│               │   └── Employee.java
+│               ├── mapper
+│               │   └── EmployeeMapper.java
+│               ├── repository
+│               │   └── EmployeeRepository.java
+│               └── service
+│                   ├── EmployeeService.java
+│                   └── impl
+│                       └── EmployeeServiceImpl.java
+└── resources
+    ├── application.properties
+    ├── schema.sql
+    ├── static
+    └── templates
+
+14 directories, 10 files
