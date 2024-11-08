@@ -26,4 +26,11 @@ public class EmployeeController {
     public ResponseEntity<String> test() {
         return new ResponseEntity<>("Controller is working!", HttpStatus.OK);
     }
+
+    // Build Get EmpLoyee REST API
+    @GetMapping("{id}")
+    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") Long employeeId) {
+        EmployeeDto employeeDto = employeeService.getEmployeeById(employeeId);
+        return ResponseEntity.ok(employeeDto);
+    }
 }
